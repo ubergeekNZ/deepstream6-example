@@ -1,0 +1,70 @@
+[application]
+enable-perf-measurement=1
+perf-measurement-interval-sec=1
+
+[source0]
+enable=1
+#Type - 1=CameraV4L2 2=URI 3=MultiURI 4=RTSP
+type=3
+uri=file://../data/TownCentreXVID.mp4
+num-sources=1
+gpu-id=0
+cudadec-memtype=0
+
+[streammux]
+## Boolean property to inform muxer that sources are live
+## Set to 1 to process @ source framerate, 0 for asap
+live-source=0
+batch-size=1
+##time out in usec, to wait after the first buffer is available
+##to push the batch even if the complete batch is not formed
+batched-push-timeout=40000
+## Set muxer output width and height
+width=1280
+height=720
+
+# config-file property is mandatory for any gie section.
+# Other properties are optional and if set will override the properties set in
+# the infer config file.
+[primary-gie]
+enable=1
+gpu-id=0
+gie-unique-id=1
+nvbuf-memory-type=0
+# config-file=model_yolo.txt
+config-file=model_yolo.txt
+
+[tiled-display]
+enable=1
+rows=1
+columns=1
+width=1280
+height=720
+
+[osd]
+enable=1
+border-width=2
+text-size=15
+text-color=1;1;1;1;
+text-bg-color=0.3;0.3;0.3;1
+font=Serif
+
+[sink0]
+enable=1
+type=3
+#1=mp4 2=mkv
+container=1
+#1=h264 2=h265 3=mpeg4
+codec=1
+#encoder type 0=Hardware 1=Software
+enc-type=0
+sync=0
+bitrate=2000000
+#H264 Profile - 0=Baseline 2=Main 4=High
+#H265 Profile - 0=Main 1=Main10
+profile=0
+output-file=data/towncentre_out_yolo.mp4
+source-id=0
+
+[tests]
+file-loop=0
