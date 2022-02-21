@@ -1,4 +1,4 @@
-# Running YOLOv4 on Deepstream 6
+# Running YOLOv4 on Deepstream 6 (https://medium.com/@paul.sw.lee/running-yolov4-on-deepstream-6-511125d93a6f)
 
 Deepstream is a highly optimized video analysis pipeline developed by NVIDIA. It is based on GStreamer and highly optimized to run on the NVIDIA GPU. As everything runs on the GPU, this results in fast video processing as the images never leave the GPU. NVIDIA has created some plugins where you can run ML inference models and multi-object tracking. In this tutorial, we will describe how to evaluate the latest Deepstream 6 using docker and learn how to run the YOLOv4 model. The examples were tested in Ubuntu 20.04 and RTX3060 and based on [1].
 
